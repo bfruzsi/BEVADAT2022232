@@ -69,7 +69,5 @@ def dict_to_list(input_dict):
 input_dict = {"hello": "bello", "szevasz": "tavasz"}
 dict_to_list(input_dict)
 
-# %%
-
 
 
