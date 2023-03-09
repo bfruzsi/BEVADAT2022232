@@ -26,7 +26,7 @@ def create_array(size = (2,2)) -> np.array:
 
 
 def set_one(inpt: np.array):
-    np.fill_diagonal(inpt, 1)
+    return np.fill_diagonal(inpt, 1)
 
 # Készíts egy függvényt ami transzponálja a paraméterül kapott mártix-ot:
 # Be: [[1, 2], [3, 4]]
