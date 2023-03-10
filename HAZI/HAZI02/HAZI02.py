@@ -97,7 +97,7 @@ def eval_classification(mylist: list, array: np.array):
 
 
 def replace_odd_numbers(array: np.array) -> np.array:
-    result = np.where(np.array(array) % 2 == 1, -1, array)
+    result = np.where(array % 2 == 1, -1, array)
     return result
 
 
@@ -110,7 +110,7 @@ def replace_odd_numbers(array: np.array) -> np.array:
 
 
 def replace_by_value(array: np.array, number) -> np.array:  
-    return np.where(np.array(array) < number, -1, 1)
+    return np.where(array < number, -1, 1)
 
 # Készíts egy olyan függvényt, ami egy array értékeit összeszorozza és az eredményt visszaadja
 # Be: [1,2,3,4]
