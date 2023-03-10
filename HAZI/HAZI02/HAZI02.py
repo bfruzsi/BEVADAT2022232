@@ -155,9 +155,6 @@ def add_border(array: np.array) -> np.array:
 
 
 def list_days(start_date: str, end_date: str)-> np.array:
-    #start = np.datetime64(start_date+"-01")
-    #end = np.datetime64(end_date+"-01")
-    #array = np.array(np.arange(start,end),np.datetime64)
     array = np.arange(start_date, end_date, dtype='datetime64[D]')
     return array
 
