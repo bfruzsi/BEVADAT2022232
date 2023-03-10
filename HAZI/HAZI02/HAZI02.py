@@ -46,15 +46,14 @@ def get_array_shape(array: np.array) -> np.array:
         column = array.shape[0]
         row = array.shape[1]
         depth = array.shape[2]
-        return "sor: " + str(row) + ", " + "oszlop: " + str(column) + ", " + "melyseg: " + str(depth)
-        #result = "sor: {}, oszlop: {}, melyseg: {}".format(*size)
+        return "sor: {}, oszlop: {}, melyseg: {}".format(row, column, depth)
     elif np.ndim(array) == 2:
          column = array.shape[0]
          row = array.shape[1]
-         return "sor: " + str(row) + ", " + "oszlop: " + str(column) + ", " + "melyseg: " + str(depth)
+         return "sor: {}, oszlop: {}, melyseg: {}".format(column, row, depth)
     else:
         column = array.shape[0]
-        return "sor: " + str(row) + ", " + "oszlop: " + str(column) + ", " + "melyseg: " + str(depth)
+        return "sor: {}, oszlop: {}, melyseg: {}".format(row, column, depth)
 
 # Készíts egy olyan függvényt, aminek segítségével elő tudod állítani egy neurális hálózat tanításához szükséges pred-et egy numpy array-ből. 
 # Bementként add meg az array-t, illetve hogy mennyi class-od van. Kimenetként pedig adjon vissza egy 2d array-t, ahol a sorok az egyes elemek. Minden nullákkal teli legyen és csak ott álljon egyes, ahol a bementi tömb megjelöli. 
