@@ -162,9 +162,9 @@ list_days('2023-03', '2023-04')
 # Ki: 2017-03-24
 
 
-def get_act_date():
-    act_date = np.datetime64('now')
-    return np.datetime_as_string(act_date, unit='D')
+def get_act_date() -> np.datetime64:
+    return np.datetime64('today')
+
 
 # Írj egy olyan függvényt ami visszadja, hogy mennyi másodperc telt el 1970 január 01. 00:02:00 óta. Int-el térjen vissza
 # Be: 
