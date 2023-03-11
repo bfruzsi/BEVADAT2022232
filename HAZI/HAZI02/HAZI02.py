@@ -14,9 +14,7 @@ import numpy as np
 
 
 def column_swap(array: np.array) -> np.array:
-    array[:, [0, 1]] = array[:, [1, 0]]
-
-    return array
+    return np.fliplr(array)
 
 # Készíts egy olyan függvényt ami összehasonlít két array-t és adjon vissza egy array-ben, hogy hol egyenlőek 
 # Pl Be: [7,8,9], [9,8,7] 
