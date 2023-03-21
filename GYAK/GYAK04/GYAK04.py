@@ -40,7 +40,6 @@ def get_column(test_df: pd.DataFrame, area: str) -> pd.core.series.Series:
     column = new_df[area]
     return pd.core.series.Series(column)
 
-
 '''
 Készíts egy függvényt ami a bemeneti DataFrame-ből vissza adja a két legnagyobb területű országhoz tartozó sorokat.
 
@@ -52,7 +51,8 @@ függvény neve: get_top_two
 
 
 def get_top_two(test_df) -> pd.core.frame.DataFrame:
-    two_biggest = test_df.nlargest(2, "area")
+    new_df = test_df.copy()
+    two_biggest = new_df.nlargest(2, "area")
     return two_biggest
 
 '''
@@ -68,10 +68,9 @@ függvény neve: population_density
 
 def population_density(test_df) -> pd.core.frame.DataFrame:
     new_df = test_df.copy()
-    density = test_df["population"] / test_df["area"]
+    density = new_df["population"] / new_df["area"]
     new_df["density"] = density
     return new_df
-
 
 '''
 Készíts egy függvényt, ami a bemeneti Dataframe adatai alapján elkészít egy olyan oszlopdiagramot (bar plot),
@@ -87,18 +86,17 @@ return type: matplotlib.figure.Figure
 függvény neve: plot_population
 '''
 
-
 def plot_population(test_df):
+    new_df = test_df.copy()
     fig, ax = plt.subplots()
-    countries = test_df["country"]
-    pop = test_df["population"]
+    countries = new_df["country"]
+    pop = new_df["population"]
 
     ax.bar(countries, pop)
     ax.set_xlabel("Country")
     ax.set_ylabel("Population (millions)")
     ax.set_title("Population of Countries")
     return fig
-
 
 '''
 Készíts egy függvényt, ami a bemeneti Dataframe adatai alapján elkészít egy olyan kördiagramot,
@@ -114,9 +112,10 @@ függvény neve: plot_area
 
 
 def plot_area(test_df):
+    new_df = test_df.copy()
     fig, ax = plt.subplots()
-    areas = test_df["area"]
-    names = test_df["country"]
+    areas = new_df["area"]
+    names = new_df["country"]
     ax.pie(areas, labels = names)
     return fig
 
