@@ -72,8 +72,6 @@ def population_density(test_df) -> pd.core.frame.DataFrame:
     new_df["density"] = density
     return new_df
 
-population_density(df_to_use)
-
 
 '''
 Készíts egy függvényt, ami a bemeneti Dataframe adatai alapján elkészít egy olyan oszlopdiagramot (bar plot),
