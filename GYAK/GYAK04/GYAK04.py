@@ -116,6 +116,7 @@ def plot_area(test_df):
     fig, ax = plt.subplots()
     areas = new_df["area"]
     names = new_df["country"]
+    ax.set_title('Area of Countries')
     ax.pie(areas, labels = names)
     return fig
 

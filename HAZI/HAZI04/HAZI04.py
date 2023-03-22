@@ -221,7 +221,7 @@ def ethnicity_pie_chart(df_data):
 
     ax.set_title("Proportion of Students by Race/Ethnicity")
 
-    ax.pie(ethnicities, labels = ['group A', 'group B', 'group C', 'group D', 'group F'], autopct='%1.1f%%')
+    ax.pie(ethnicities, labels = ['group A', 'group B', 'group C', 'group D', 'group E'], autopct='%1.1f%%')
     return fig
 
 
