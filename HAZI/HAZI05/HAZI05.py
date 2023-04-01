@@ -10,7 +10,6 @@ class KNNClassifier():
         self.k = k
         self.test_split_ratio = test_split_ratio
 
-
     @staticmethod
     def load_csv(path: str) -> Tuple[pd.core.frame.DataFrame, pd.core.series.Series]:
         dataFrame = pd.read_csv(path)
