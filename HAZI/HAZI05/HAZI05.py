@@ -69,4 +69,9 @@ class KNNClassifier():
         self.k = temp_k
         
         return best_k, round(best_pred_accuracy, 2)
+        
+        
+    @property
+    def k_neighbors(self):
+        return self.k
     
