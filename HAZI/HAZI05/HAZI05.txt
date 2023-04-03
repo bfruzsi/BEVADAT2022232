@@ -1,0 +1,2 @@
+1. load_csv
+    A bemeneti paraméterként kapott útvonalról betölti a megadott csv file-t, ezt átalakítja DataFrame-mé, majd megkeveri a célváltozó értékeit.
