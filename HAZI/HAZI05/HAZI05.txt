@@ -1,2 +1,21 @@
 1. load_csv
     A bemeneti paraméterként kapott útvonalról betölti a megadott csv file-t, ezt átalakítja DataFrame-mé, majd megkeveri a célváltozó értékeit.
+2. train_test_split
+    Létrehoz tanító, illetve ellenőrző adatokat, ezek ki- és bemeneti paramétereit mentjük el változókba.
+    bemeneti: x
+    kimeneti: y
+    Ezekkel tudunk később tesztelni.
+3. euclidean
+    Euklideszi algoritmussal kiszámítja a tanító adatok bemeneti paramétereinek sorának és az elements_of_x (adott sor) közötti távolságot.
+4. predict
+    Az Euklideszi algoritmus meghívásával kiszámítja a távolságot, ezt és az y_traint a zip-el Tuple-lé alakítja, rendezi, majd DataFrame-mé alakítja.
+    Ezek után kiválasztja a leggyakrabban előforduló kimenetelt és hozzáfűzi a labels_pred arrayhez.
+5. accuracy
+    Megnézzük, mennyire lettek pontosak a tippelt értékek a tényleges kimenetekhez képest, majd ezt százalékosan visszaadjuk.
+6. confusion_matrix
+    Tippek eloszlását mutatja meg.
+7. best_k
+    Megkeresi a legpontosabb predikciót.
+8. k_neghbors
+    Visszaadja k-t
+    
