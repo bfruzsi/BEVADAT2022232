@@ -59,7 +59,7 @@ class KNNClassifier():
         best_pred_accuracy = 0.0
         temp_k = self.k
         for i in range(10):
-            self.k = i*2+1
+            self.k = i+1
             self.predict(self.x_test)
             pred_accuracy = self.accuracy()
             if (best_pred_accuracy < pred_accuracy):
@@ -69,4 +69,9 @@ class KNNClassifier():
         self.k = temp_k
         
         return best_k, round(best_pred_accuracy, 2)
+        
+        
+    @property
+    def k_neighbors(self):
+        return self.k
     
