@@ -51,3 +51,22 @@ HAZI-
 ##                                                              ##
 ##################################################################
 """
+
+classifier = DecisionTreeClassifier(min_samples_split=31, max_depth=10)
+classifier.fit(X_train, Y_train)
+
+'''
+Nehézségek: Egy próbálkozás 3-4 percig futott, így elég nehéz volt kitalálni, milyen számokkal dolgozzak. Pont ezért próbáltam kisebb és nagyobb értékeket is, hátha valamelyik megugorja a 80%-ot (ez a 31-10 kombó volt), 
+ennél feljebb nem tudtam menni, folyton 0.795 körül mozgott az accuracy.
+Próbálkozások:
+1. min_samples_split: 3, max_depth: 8 --> KeyError
+2. min_samples_split: 5, max_depth: 8 --> KeyError
+3. min_samples_split: 15, max_depth: 8 --> 0.7956666666666666
+4. min_samples_split: 24, max_depth: 8 --> 0.7953333333333333
+5. min_samples_split: 31, max_depth: 10 --> 0.8006666666666666
+6. min_samples_split: 40, max_depth: 12 --> 0.7990833333333334
+7. min_samples_split: 40, max_depth: 20 --> 0.7854166666666667
+8. min_samples_split: 40, max_depth: 8 --> 0.7953333333333333
+9. min_samples_split: 50, max_depth: 8 --> 0.7954166666666667
+10. min_samples_split: 60, max_depth: 8 --> 0.7955
+'''
