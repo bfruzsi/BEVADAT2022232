@@ -11,7 +11,7 @@ class NJCleaner():
     def drop_columns_and_nan(self) -> pd.core.frame.DataFrame:
         dropped = self.data.drop(['from'], axis=1)
         dropped = dropped.drop(['to'], axis=1)
-        #dropped = dropped.dropna()
+        dropped = dropped.dropna()
 
         return dropped
 
@@ -24,44 +24,29 @@ class NJCleaner():
 
     def convert_scheduled_time_to_part_of_the_day(self) -> pd.core.frame.DataFrame:
         df_new = self.data
-        df_new['part_of_the_day'] = ''
         
-        for i in range(len(df_new)):
-            hour = pd.to_datetime(df_new['scheduled_time'][i]).hour
-            
-            if hour < 4 and hour >= 0:
-                df_new['part_of_the_day'][i] = 'late_night'
-            elif hour < 8 and hour >= 4:
-                df_new['part_of_the_day'][i] = 'early_morning'
-            elif hour < 12 and hour >= 8: 
-                df_new['part_of_the_day'][i] = 'morning'
-            elif hour < 16 and hour >= 12: 
-                df_new['part_of_the_day'][i] = 'afternoon'
-            elif hour < 20 and hour >= 16: 
-                df_new['part_of_the_day'][i] = 'evening'
-            else:
-                df_new['part_of_the_day'][i] = 'night'
+        df_new['scheduled_time'] = pd.to_datetime(df_new['scheduled_time'])
+        hour = df_new['scheduled_time'].dt.hour
+    
+        df_new['part_of_the_day'] = hour.apply(lambda x: 'late_night' if 0 <= x < 4 else
+                                                 'early_morning' if 4 <= x < 8 else
+                                                 'morning' if 8 <= x < 12 else
+                                                 'afternoon' if 12 <= x < 16 else
+                                                 'evening' if 16 <= x < 20 else 'night')
 
         df_new = df_new.drop(['scheduled_time'], axis=1)
         return df_new
 
     def convert_delay(self) -> pd.core.frame.DataFrame:
-        df_new = self.data
-        df_new['delay'] = ''
+        df_new = self.sdata
 
-        for i in range(len(df_new)):
-            delay = df_new['delay_minutes'][i]
-
-            if delay >= 0 and delay < 5:
-                df_new['delay'][i] = 0
-            elif delay >= 5:
-                df_new['delay'][i] = 1
+        df_new['delay'] = df_new['delay_minutes'].apply(lambda x: 1 if x >= 5 else 0)
 
         return df_new
 
     def drop_unnecessary_columns(self) -> pd.core.frame.DataFrame:
         dropped = self.data.drop(['train_id'], axis=1)
-        #dropped = dropped.drop(['scheduled_time'], axis=1)
+        dropped = dropped.drop(['scheduled_time'], axis=1)
         dropped = dropped.drop(['actual_time'], axis=1)
         dropped = dropped.drop(['delay_minutes'], axis=1)
         
@@ -72,10 +57,10 @@ class NJCleaner():
         first_60k.to_csv(path_or_buf=path, index=False)
 
     def prep_df(self, path = 'data/NJ.csv'):
-        self.data = self.order_by_scheduled_time()
-        self.data = self.drop_columns_and_nan()
-        self.data = self.convert_date_to_day()
-        self.data = self.convert_scheduled_time_to_part_of_the_day()
-        self.data = self.convert_delay()
-        self.data = self.drop_unnecessary_columns()
+        self.order_by_scheduled_time()
+        self.drop_columns_and_nan()
+        self.convert_date_to_day()
+        self.convert_scheduled_time_to_part_of_the_day()
+        self.convert_delay()
+        self.drop_unnecessary_columns()
         self.save_first_60k(path)
