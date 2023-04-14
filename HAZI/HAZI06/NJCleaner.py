@@ -38,7 +38,7 @@ class NJCleaner():
         return df_new
 
     def convert_delay(self) -> pd.core.frame.DataFrame:
-        df_new = self.sdata
+        df_new = self.data
 
         df_new['delay'] = df_new['delay_minutes'].apply(lambda x: 1 if x >= 5 else 0)
 
@@ -46,7 +46,6 @@ class NJCleaner():
 
     def drop_unnecessary_columns(self) -> pd.core.frame.DataFrame:
         dropped = self.data.drop(['train_id'], axis=1)
-        dropped = dropped.drop(['scheduled_time'], axis=1)
         dropped = dropped.drop(['actual_time'], axis=1)
         dropped = dropped.drop(['delay_minutes'], axis=1)
         
