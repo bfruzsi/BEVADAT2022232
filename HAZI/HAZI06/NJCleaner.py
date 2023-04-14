@@ -63,4 +63,3 @@ class NJCleaner():
         self.convert_delay()
         self.drop_unnecessary_columns()
         self.save_first_60k(path)
-        # :)
