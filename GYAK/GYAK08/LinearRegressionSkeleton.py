@@ -20,13 +20,13 @@ class LinearRegression:
         self.c = 0
 
         L = 0.0001  # The learning Rate
-        epochs = 5000  # The number of iterations to perform gradient descent
+        # epochs = 5000  # The number of iterations to perform gradient descent
 
         n = float(len(self.X_train)) # Number of elements in X
 
         # Performing Gradient Descent 
         losses = []
-        for i in range(epochs): 
+        for i in range(self.epochs): 
             y_pred = self.m * self.X_train + self.c  # The current predicted value of Y
 
             residuals = y_pred - self.y_train
