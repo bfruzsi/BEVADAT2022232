@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.datasets import load_iris
 
+
 class LinearRegression:
     def __init__(self, epochs: int = 1000, lr: float = 1e-3):
         self.epochs = epochs
@@ -15,8 +16,6 @@ class LinearRegression:
 
 
     def fit(self, X: np.array, y: np.array):
-        L = 0.0001  # The learning Rate
-
         n = float(len(X)) # Number of elements in X
 
         # Performing Gradient Descent 
@@ -29,8 +28,9 @@ class LinearRegression:
             self.losses.append(loss)
             D_m = (-2/n) * sum(X * residuals)  # Derivative wrt m
             D_c = (-2/n) * sum(residuals)  # Derivative wrt c
-            self.m = self.m + L * D_m  # Update m
-            self.c = self.c + L * D_c  # Update c
+            self.m = self.m - self.lr * D_m  # Update m
+            self.c = self.c - self.lr * D_c  # Update c
+        return self.losses
 
 
     def predict(self, X):
