@@ -1,7 +1,4 @@
 import numpy as np
-import pandas as pd
-from sklearn.datasets import load_iris
-
 
 class LinearRegression:
     def __init__(self, epochs: int = 1000, lr: float = 1e-3):
@@ -10,9 +7,6 @@ class LinearRegression:
         self.m = 0
         self.c = 0
         self.losses = []
-
-        # self.iris = load_iris()
-        # self.df = pd.DataFrame(self.iris.data, columns=self.iris.feature_names)
 
 
     def fit(self, X: np.array, y: np.array):
