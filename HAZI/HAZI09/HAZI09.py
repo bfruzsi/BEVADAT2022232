@@ -13,36 +13,27 @@ class KMeansOnDigits:
     def __init__(self, n_clusters, random_state):
         self.n_clusters = n_clusters
         self.random_state = random_state
-        self.digits = []
 
     def load_dataset(self):
         self.digits = load_digits()
 
     def predict(self):
-        kmeans = KMeans(n_clusters = 10, random_state = 0)
+        self.kmeans = KMeans(n_clusters = self.n_clusters, random_state = self.random_state)
 
-        self.clusters = kmeans.fit_predict(self.dataset.data)
+        self.clusters = self.kmeans.fit_predict(self.digits.data, self.digits.target)
 
     def get_labels(self):
-        result_array = np.zeros(len(self.clusters)) #kmeans_pred
+        self.result_array = np.empty(shape=self.clusters.shape) #kmeans_pred
         for i in range(len(self.clusters)):
             mask = (self.clusters == i)
     
-            xd = self.dataset.target[mask]
-        d_mode, kaki = mode(xd)
-
-        result_array[mask] = d_mode
-        print(d_mode)
-        print(kaki)
-        print(result_array)
-        return result_array
+            self.result_array[mask] = mode(self.digits.target[mask], keepdims=False).mode
 
     def calc_accuracy(self):
-        self.predicted_labels = self.get_labels()
-        self.accuracy = accuracy_score(self.dataset.target, self.predicted_labels)
-        return self.accuracy.round(decimals=2)
+        self.accuracy = accuracy_score(self.digits.target, self.result_array)
+        self.rounded_acc = self.accuracy.round(decimals=2)
 
     def confusion_matrix(self):
-        conf_matrix = confusion_matrix(self.clusters, self.predicted_labels)
+        conf_matrix = confusion_matrix(self.digits.target, self.result_array)
         sns.heatmap(conf_matrix, annot = True)
     
