@@ -23,17 +23,17 @@ class KMeansOnDigits:
         self.clusters = self.kmeans.fit_predict(self.digits.data, self.digits.target)
 
     def get_labels(self):
-        self.result_array = np.empty(shape=self.clusters.shape) #kmeans_pred
+        self.labels = np.empty(shape=self.clusters.shape) #kmeans_pred
         for i in range(len(self.clusters)):
             mask = (self.clusters == i)
     
-            self.result_array[mask] = mode(self.digits.target[mask], keepdims=False).mode
+            self.labels[mask] = mode(self.digits.target[mask], keepdims=False).mode
 
     def calc_accuracy(self):
-        self.accuracy = accuracy_score(self.digits.target, self.result_array)
+        self.accuracy = accuracy_score(self.digits.target, self.labels)
         self.rounded_acc = self.accuracy.round(decimals=2)
 
     def confusion_matrix(self):
-        conf_matrix = confusion_matrix(self.digits.target, self.result_array)
-        sns.heatmap(conf_matrix, annot = True)
+        self.mat = confusion_matrix(self.digits.target, self.result_array)
+        # sns.heatmap(conf_matrix, annot = True)
     
