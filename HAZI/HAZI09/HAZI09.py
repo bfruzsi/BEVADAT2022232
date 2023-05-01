@@ -30,8 +30,8 @@ class KMeansOnDigits:
             self.labels[mask] = mode(self.digits.target[mask], keepdims=False).mode
 
     def calc_accuracy(self):
-        self.accuracy = accuracy_score(self.digits.target, self.labels)
-        self.rounded_acc = self.accuracy.round(decimals=2)
+        self.accuracy = np.round(accuracy_score(self.digits.target, self.labels), 2)
+        # self.rounded_acc = self.accuracy.round(decimals=2)
 
     def confusion_matrix(self):
         self.mat = confusion_matrix(self.digits.target, self.labels)
