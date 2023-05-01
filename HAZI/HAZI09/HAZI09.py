@@ -34,6 +34,6 @@ class KMeansOnDigits:
         self.rounded_acc = self.accuracy.round(decimals=2)
 
     def confusion_matrix(self):
-        self.mat = confusion_matrix(self.digits.target, self.result_array)
+        self.mat = confusion_matrix(self.digits.target, self.labels)
         # sns.heatmap(conf_matrix, annot = True)
     
