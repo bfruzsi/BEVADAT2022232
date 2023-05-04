@@ -20,6 +20,6 @@ class Dense:
         self.y_pred = np.dot(X, self.W) + self.bias
         return self.y_pred
     
-    class ReLU():
-        def forward_pass(self, x):
-            return np.maximum(0, x)
+class ReLU():
+    def forward_pass(self, X):
+        return np.maximum(0, X)
