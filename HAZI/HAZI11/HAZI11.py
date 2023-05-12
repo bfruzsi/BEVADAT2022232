@@ -72,8 +72,8 @@ függvény neve: model_fit
 '''
  
 def model_fit(model,epochs, train_images, train_labels):
-    history = model.fit(train_images, train_labels, epochs=epochs, 
-                    validation_data=(test_images, test_labels))
+    model.fit(train_images, train_labels, epochs=epochs)
+    return model
 
 '''
 Készíts egy metódust, ami a bemeneti hálót kiértékeli a teszt adatokon.
